@@ -1,0 +1,124 @@
+/* import React from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import '@testing-library/jest-dom/extend-expect';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import { Navigate } from "react-router-dom";
+import DashboardMain from "./dashboradMain";
+import { logoutUser, getAdminDetails } from "../../../redux/actions/loginAction";
+import { getDashboardCount } from "../../../redux/actions/dashboardDetails";
+import Auth from "../../../services/Auth";
+
+jest.mock("react-router-dom", () => ({
+  Navigate: jest.fn(() => null),
+  Link: jest.fn(({ children }) => <a>{children}</a>),
+}));
+
+jest.mock("../../../redux/actions/loginAction", () => ({
+  logoutUser: jest.fn(),
+  getAdminDetails: jest.fn(() => {
+    return (dispatch) => {
+      dispatch({ type: 'GET_ADMIN_DETAILS' });
+    };
+  }),
+}));
+
+jest.mock("../../../redux/actions/dashboardDetails", () => ({
+  getDashboardCount: jest.fn(() => {
+    return (dispatch) => {
+      dispatch({ type: 'GET_DASHBOARD_COUNT' });
+    };
+  }),
+}));
+
+jest.mock("../../../services/Auth", () => ({
+  retriveToken: jest.fn(),
+}));
+
+const middlewares = [thunk];
+const mockStore = configureStore(middlewares);
+
+const initialState = {
+  user: {
+    isLoggedIn: false,
+  },
+  dashboardDetails: {
+    retrived: false,
+    teacherActive: 0,
+    teacherBlocked: 0,
+    studentActive: 0,
+    studentBlocked: 0,
+    subjectActive: 0,
+    subjectBlocked: 0,
+  },
+};
+
+const renderWithRedux = (component, { initialState, store = mockStore(initialState) } = {}) => {
+  return {
+    ...render(<Provider store={store}>{component}</Provider>),
+    store,
+  };
+};
+
+describe("DashboardMain Component", () => {
+  let store;
+
+  beforeEach(() => {
+    store = mockStore(initialState);
+    Auth.retriveToken.mockReturnValue('some-token');
+  });
+
+  test("renders DashboardMain component correctly", () => {
+    renderWithRedux(<DashboardMain />);
+    expect(screen.getByText('Exam Portal')).toBeInTheDocument();
+  });
+
+  test("navigates to '/' if no token", () => {
+    Auth.retriveToken.mockReturnValue(null);
+    renderWithRedux(<DashboardMain />);
+    expect(Navigate).toHaveBeenCalledWith({ to: '/' }, {});
+  });
+
+  test("dispatches getAdminDetails if user is not logged in", () => {
+    renderWithRedux(<DashboardMain />, { store });
+    expect(getAdminDetails).toHaveBeenCalled();
+  });
+
+  test("dispatches getDashboardCount if dashboard details not retrieved", () => {
+    store = mockStore({
+      ...initialState,
+      user: {
+        isLoggedIn: true,
+      },
+      dashboardDetails: {
+        retrived: false,
+      },
+    });
+    renderWithRedux(<DashboardMain />, { store });
+    expect(getDashboardCount).toHaveBeenCalled();
+  });
+
+  test("expands and collapses tables on button click", () => {
+    store = mockStore({
+      ...initialState,
+      user: {
+        isLoggedIn: true,
+      },
+      dashboardDetails: {
+        retrived: true,
+      },
+    });
+    renderWithRedux(<DashboardMain />, { store });
+
+    const teacherButton = screen.getByText('Show');
+    fireEvent.click(teacherButton);
+
+    expect(screen.getByText('Teacher')).toBeInTheDocument();
+
+    fireEvent.click(teacherButton);
+    // Ensure it collapses (assuming the component updates to hide the table)
+  });
+
+  // Add more tests as needed
+}); */

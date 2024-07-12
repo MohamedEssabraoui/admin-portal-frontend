@@ -1,0 +1,68 @@
+/* Overall table styling */
+.main table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Table header styling */
+.main table thead th {
+  padding: 10px;
+  text-align: left;
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  font-weight: bold;
+}
+
+/* Table body styling */
+.main table tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+/* Table body row styling (hover effect) */
+.main table tbody tr:hover {
+  background-color: #eee;
+}
+
+/* Table body cell styling */
+.main table tbody td {
+  padding: 10px;
+}
+
+/* Title styling */
+.main .title {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+/* Button styling */
+.main table button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+/* Button color variations based on action (optional) */
+.main table button:first-child { /* Change color for first button (e.g., status change) */
+  background-color: #ffc107; /* Orange */
+  color: white;
+}
+
+.main table button:nth-child(2) { /* Change color for second button (e.g., edit) */
+  background-color: #3f51b5; /* Blue */
+  color: white;
+}
+
+.main table button:last-child { /* Change color for third button (e.g., delete) */
+  background-color: #f44336; /* Red */
+  color: white;
+}
+
+/* Button hover effect */
+.main table button:hover {
+  opacity: 0.8;
+}
