@@ -1,8 +1,8 @@
 const environment = process.env.NODE_ENV;
 
-let base_local_url = 'examsgurdian.azurewebsites.net';
+let base_local_url = 'https://gurdianbackendapi.azurewebsites.net';
 //http://localhost:3000
-let base_backend_url = 'http://localhost:5000';
+let base_backend_url = 'https://gurdianbackendapi.azurewebsites.net';
 if(environment==='docker') {
   base_local_url = 'http://user-frontend-app:3000';
   base_backend_url = 'http://backend:5000';
